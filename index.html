@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>  
+    <!-- Timer -->
+    <div id="timer" style="display: none"></div>
     <!-- Starting Screen -->
- <section id="startingScreen" style="display: none">
+ <section id="startingScreen">
     <nav id="scoreboardLink">View High Scores!</nav>
     <h1 id="title">Coding Quiz Challenge</h1>
     <p id="rules">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
@@ -18,7 +20,7 @@
 </section>
     <!-- Quiz -->
 <section> 
-    <div id="quiz" style="display: block">
+    <div id="quiz" style="display: none">
     <div id="questionDisplay"></div>
     <div id="choices">
         <div class="choice" id="A" onclick="checkAnswer('A')"></div>
@@ -29,7 +31,26 @@
     <div id="results"></div>
     </div>
 </section>
-
+<!-- User Input (for Scoreboard) -->
+<section id="userForm" style="display:none">
+<div id="title">All Done!</div>
+<div id="scoreReport"></div>
+<form method="get">
+    <div class="input-group">
+      <label class="initials" for="initials">Enter Initials:</label>
+      <input type="text" name="initials" id="initials" />
+    </div>
+    <button id="submit">Submit</button>
+  </form>
+</section>
+<!-- Scoreboard -->
+<section id="scoreBoard" style="display: none">
+<div id="title">High Scores:</div>
+<div id="scoreBoardBtns">
+    <button id="back">Go Back</button>
+    <button id="clear">Clear High Scores</button>
+</div>
+</section>
 
     <script src="./script.js"></script>
 </body>

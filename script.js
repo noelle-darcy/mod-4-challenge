@@ -5,7 +5,10 @@
 // Scoreboard
 
 // Quiz
+var timer = document.getElementById("timer");
+var scoreReport = document.getElementById("scoreReport");
 var startingScreen = document.getElementById("startingScreen");
+var userForm = document.getElementById("userForm");
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
 var questionDisplay = document.getElementById("questionDisplay");
@@ -14,6 +17,7 @@ var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var results = document.getElementById("results");
+var submitBtn = document.querySelector("#submit")
 
 //Array holding questions, answer choices and correct answers.
 var questions = [
@@ -69,28 +73,70 @@ var questions = [
         choiceD.innerHTML = q.choiceD;
     };
 
+    var noMoreQuestions = 1; 
+
     function checkAnswer(answer) {
-        if (answer == q.correct){
+        if (answer === questions[currentQuestion].correct){
             results.textContent = "Correct!";
         }else {
-            results.textContent = "Sorry that's wrong. The answer was " + answer + "."; 
-            // subtract time from timer 
+            results.textContent = "Sorry that's wrong. The answer was " + questions[currentQuestion].correct + "."; 
+            secondsLeft = secondsLeft - 10;
         }
         if(currentQuestion < lastQuestion) {
             currentQuestion++;
             displayQuestion();
         }else{
             quiz.style.display = "none";
+            noMoreQuestions = 0;
         }
     };
+    var secondsLeft = 75;
+    function setTime() {
+        var timerInterval = setInterval(function() {
+            secondsLeft--;
+            timer.textContent = "Time: " + secondsLeft;
+
+            if(secondsLeft === 0) {
+                clearInterval(timerInterval);
+                userInput();
+            }
+            if(noMoreQuestions === 0) {
+                clearInterval(timerInterval);
+                userInput();
+                console.log("hello");
+            }
+
+        }, 1000);
+    }
 
     function startQuiz() {
         startingScreen.style.display = "none";
         quiz.style.display = "block";
         displayQuestion();
+        timer.style.display = "block";
+        setTime();
+    }
+    
+    function userInput () {
+        userForm.style.display = "block";
+        quiz.style.display = "none";
+        timer.style.display = "none";
+        scoreReport.textContent = "Your final score is " + secondsLeft + "!";
+        submitBtn.addEventListener("click", function(event) {
+            var initials = document.querySelector("#initials").value;
+            localStorage.setItem("initials", initials);
+            localStorage.setItem("score", secondsLeft);
+        });
+        scoreBoard ();
     }
 
-    displayQuestion();
+    function scoreBoard () {
+        var savedInitials = localStorage.getItem("initials");
+        var savedScore = localStorage.getItem("score");
+        
+    }
+
+
 
 
 
