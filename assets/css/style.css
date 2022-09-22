@@ -1,4 +1,4 @@
-
+/* Starting Screen */
 #start{
    display: block;
    color: white;
@@ -33,4 +33,32 @@
     margin-right: 33%;
     text-align: center;
     width: 33%;
+}
+
+/* Quiz */
+#A, #B, #C, #D{
+   display: block;
+   color: white;
+   background-color: rgb(84, 48, 114);
+   border-radius: 8px;
+   padding: 10px;
+   margin-bottom: 5px;
+   width: 300px;
+   text-align: center;
+   margin-left: 40%;
+}
+#quiz{
+    margin-top: 20%;
+}
+#questionDisplay{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#results{
+    font-size: 25px;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 2px solid gray;
+    padding-top: 40px;
 }

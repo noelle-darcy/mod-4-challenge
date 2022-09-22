@@ -5,7 +5,7 @@
 // Scoreboard
 
 // Quiz
-
+var startingScreen = document.getElementById("startingScreen");
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
 var questionDisplay = document.getElementById("questionDisplay");
@@ -73,7 +73,7 @@ var questions = [
         if (answer == q.correct){
             results.textContent = "Correct!";
         }else {
-            results.textContent = "Sorry that's wrong. The answer was " + answer; 
+            results.textContent = "Sorry that's wrong. The answer was " + answer + "."; 
             // subtract time from timer 
         }
         if(currentQuestion < lastQuestion) {
@@ -85,11 +85,12 @@ var questions = [
     };
 
     function startQuiz() {
-        start.style.display = "none";
+        startingScreen.style.display = "none";
         quiz.style.display = "block";
         displayQuestion();
     }
 
+    displayQuestion();
 
 
 
