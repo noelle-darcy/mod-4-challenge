@@ -9,8 +9,15 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>  
-  <div id= "container">
+    <!-- Starting Screen -->
+ <section>
+    <nav id="scoreboardLink">View High Scores!</nav>
+    <h1 id="title">Coding Quiz Challenge</h1>
+    <p id="rules">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
     <div id="start">Start Quiz!</div>
+</section>
+    <!-- Quiz -->
+<section> 
     <div id="quiz" style="display: none">
     <div id="questionDisplay"></div>
     <div id="choices">
@@ -20,8 +27,10 @@
         <div class="choice" id="D" onclick="checkAnswer('D')"></div>
     </div>
     <div id="results"></div>
-</div>
-  </div>
+    </div>
+</section>
+
+
     <script src="./script.js"></script>
 </body>
 </html>
