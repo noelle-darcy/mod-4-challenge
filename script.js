@@ -1,11 +1,6 @@
-// Starting Screen
-
-// Timer
-
-// Scoreboard
-
-// Quiz
 var timer = document.getElementById("timer");
+var scoreList = document.getElementById("scoreList");
+var highscores = document.getElementById("highscores");
 var scoreReport = document.getElementById("scoreReport");
 var startingScreen = document.getElementById("startingScreen");
 var userForm = document.getElementById("userForm");
@@ -58,12 +53,10 @@ var questions = [
         correct: "D"
     }];
 
+    // variablizing for displayQuestion 
     var lastQuestion = questions.length - 1;
     var currentQuestion = 0;
     var q = questions[currentQuestion];
-   
-    start.addEventListener("click",startQuiz);
-
     function displayQuestion() {
         var q = questions[currentQuestion];
         questionDisplay.innerHTML = q.question;
@@ -74,7 +67,6 @@ var questions = [
     };
 
     var noMoreQuestions = 1; 
-
     function checkAnswer(answer) {
         if (answer === questions[currentQuestion].correct){
             results.textContent = "Correct!";
@@ -90,6 +82,7 @@ var questions = [
             noMoreQuestions = 0;
         }
     };
+
     var secondsLeft = 75;
     function setTime() {
         var timerInterval = setInterval(function() {
@@ -103,7 +96,6 @@ var questions = [
             if(noMoreQuestions === 0) {
                 clearInterval(timerInterval);
                 userInput();
-                console.log("hello");
             }
 
         }, 1000);
@@ -118,27 +110,101 @@ var questions = [
     }
     
     function userInput () {
-        userForm.style.display = "block";
-        quiz.style.display = "none";
-        timer.style.display = "none";
-        scoreReport.textContent = "Your final score is " + secondsLeft + "!";
-        submitBtn.addEventListener("click", function(event) {
-            var initials = document.querySelector("#initials").value;
-            localStorage.setItem("initials", initials);
-            localStorage.setItem("score", secondsLeft);
-        });
-        scoreBoard ();
-    }
+    userForm.style.display = "block";
+    quiz.style.display = "none";
+    timer.style.display = "none";
+    startingScreen.style.display = 'none';
+    scoreReport.textContent = "Your final score is " + secondsLeft + "!";
+    submitBtn.addEventListener("click", function(event) {
+        event.preventDefault();
+        var savedInitials = document.querySelector("#initials").value;
+        scoreBoard (savedInitials);
+    });
+}
 
-    function scoreBoard () {
-        var savedInitials = localStorage.getItem("initials");
-        var savedScore = localStorage.getItem("score");
-        
-    }
+function scoreBoard (savedInitials) {
+    userForm.style.display = "none";
+    highscores.style.display = "block";
+       var existingInitials = localStorage.getItem('initials'); 
+       var existingScore = localStorage.getItem('scores');
+       existingInitials = existingInitials ? existingInitials.split(',') : [];
+       existingScore = existingScore ? existingScore.split(',') : [];
+       existingInitials.push(savedInitials);
+       existingScore.push(secondsLeft);
+       console.log(existingInitials);
+       console.log(existingScore);
+    
+}
+    
+
+ 
+
+    start.addEventListener("click", startQuiz);
+  
 
 
 
 
+
+
+// need to figure out how to hold mutliple at once
+// get buttons in a line
+// organize them by score 
+// make buttons work
+// make highscore link work 
+// add some comments 
+// make a read me 
+// submit to gitHub, make website & submit to Canvas
+// send to kellen :) 
+
+// function userInput () {
+//     userForm.style.display = "block";
+//     quiz.style.display = "none";
+//     timer.style.display = "none";
+//     scoreReport.textContent = "Your final score is " + secondsLeft + "!";
+//     submitBtn.addEventListener("click", function(event) {
+//         event.preventDefault();
+//         var initials = document.querySelector("#initials").value;
+//         var scores = [];
+
+//         localStorage.setItem("initials", initials);
+//         localStorage.setItem("score", secondsLeft);
+//         scoreBoard ();
+//     });
+// }
+
+// function scoreBoard () {
+//     var savedInitials = localStorage.getItem("initials");
+//     var savedScore = localStorage.getItem("score");
+//     userForm.style.display = "none";
+//     highscores.style.display = "block";
+//     scoreList.textContent = savedInitials + " - " + savedScore;
+    
+// }
+
+// function userInput () {
+//     userForm.style.display = "block";
+//     quiz.style.display = "none";
+//     timer.style.display = "none";
+//     startingScreen.style.display = 'none';
+//     scoreReport.textContent = "Your final score is " + secondsLeft + "!";
+//     var count = 1; 
+//     submitBtn.addEventListener("click", scoreBoard());
+// }
+
+// function scoreBoard () {
+//    var savedInitials = document.querySelector("#initials").value;
+//    var existingInitials = localStorage.getItem('initials'); 
+//    var existingScore = localStorage.getItem('scores');
+//    existingInitials = existingInitials ? existingInitials.split(',') : [];
+//    existingScore = existingScore ? existingScore.split(',') : [];
+//    existingInitials.push(savedInitials);
+//    existingScore.push(secondsLeft);
+//    console.log(existingInitials);
+//    console.log(existingScore);
+
+
+// }
 
 
 
